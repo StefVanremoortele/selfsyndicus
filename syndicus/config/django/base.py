@@ -15,6 +15,7 @@ LOCAL_APPS = [
     # "syndicus.tasks.apps.TasksConfig",
     "syndicus.api.apps.ApiConfig",
     "syndicus.users.apps.UsersConfig",
+    "syndicus.buildings.apps.BuildingsConfig",
     # "syndicus.errors.apps.ErrorsConfig",
     # "syndicus.testing_examples.apps.TestingExamplesConfig",
     # "syndicus.integrations.apps.IntegrationsConfig",
