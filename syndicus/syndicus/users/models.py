@@ -67,8 +67,8 @@ class BaseUser(BaseModel, AbstractBaseUser, PermissionsMixin):
         return self.is_admin
 
 
-class Tenant(BaseModel, AbstractBaseUser, PermissionsMixin):
-    pass
+# class Tenant(BaseModel, AbstractBaseUser, PermissionsMixin):
+#     pass
 	
-class Supplier(BaseModel, AbstractBaseUser, PermissionsMixin):
-    pass
+# class Supplier(BaseModel, AbstractBaseUser, PermissionsMixin):
+#     pass

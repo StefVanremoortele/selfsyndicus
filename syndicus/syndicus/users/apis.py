@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from rest_framework.views import APIView
 
+from drf_spectacular.utils import extend_schema
+
 from syndicus.api.pagination import (
     LimitOffsetPagination,
     get_paginated_response,
@@ -24,6 +26,11 @@ class UserListApi(APIView):
             model = BaseUser
             fields = ("id", "email", "is_admin")
 
+    @extend_schema(
+        summary="List Users",
+        description="Returns a list of users",
+        responses={200: dict},
+    )
     def get(self, request):
         # Make sure the filters are valid, if passed
         filters_serializer = self.FilterSerializer(data=request.query_params)
