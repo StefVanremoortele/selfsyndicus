@@ -73,26 +73,31 @@ class PrivativeAPIView(APIView):
         description="Returns a list of privatives",
         responses={200: dict},
     )
-    def get(self, request, pk=None, building_id=None):
-        print(pk)
-        print(building_id)
-        if pk:
-            try:
-                privative = Privative.objects.get(pk=pk)
-                serializer = BuildingSerializer(privative)
-                return Response(serializer.data, status=status.HTTP_200_OK)
-            except Building.DoesNotExist:
-                return Response(
-                    {"error": "Privative not found"}, status=status.HTTP_404_NOT_FOUND
-                )
+    def get(self, request, building_id=None):
+        if building_id:
+            privatives = Privative.objects.filter(building_id=building_id)
         else:
-            # if building_id:
-            #     privatives = Privative.objects.get(building_id=building_id)
-            #     serializer = PrivativeSerializer(privatives, many=True)
-            #     return Response(serializer.data, status=status.HTTP_200_OK)
             privatives = Privative.objects.all()
-            serializer = PrivativeSerializer(privatives, many=True)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        serializer = PrivativeSerializer(privatives, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+        # if pk:
+        #     try:
+        #         privative = Privative.objects.get(pk=pk)
+        #         serializer = BuildingSerializer(privative)
+        #         return Response(serializer.data, status=status.HTTP_200_OK)
+        #     except Building.DoesNotExist:
+        #         return Response(
+        #             {"error": "Privative not found"}, status=status.HTTP_404_NOT_FOUND
+        #         )
+        # else:
+        #     # if building_id:
+        #     #     privatives = Privative.objects.get(building_id=building_id)
+        #     #     serializer = PrivativeSerializer(privatives, many=True)
+        #     #     return Response(serializer.data, status=status.HTTP_200_OK)
+        #     privatives = Privative.objects.all()
+        #     serializer = PrivativeSerializer(privatives, many=True)
+        #     return Response(serializer.data, status=status.HTTP_200_OK)
 
     @extend_schema(
         summary="Create Privative",
@@ -100,9 +105,11 @@ class PrivativeAPIView(APIView):
         responses={200: dict},
         request=PrivativeSerializer,
     )
-    def post(self, request):
+    def post(self, request, building_id=None):
         serializer = PrivativeSerializer(data=request.data)
         if serializer.is_valid():
+            if building_id:
+                serializer.validated_data['building'] = building_id  # Associate with the building if provided
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
