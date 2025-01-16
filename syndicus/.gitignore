@@ -78,7 +78,7 @@ __pycache__/
 
 # Virtual Environment
 venv/
-../venv/
+../venv/*
 env/
 env.bak/
 .venv/
@@ -102,3 +102,6 @@ config/settings/secrets.py
 htmlcov/
 .coverage
 .coverage.
+
+
+.vscode
