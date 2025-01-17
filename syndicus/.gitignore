@@ -1,0 +1,107 @@
+
+# Byte-compiled files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.log
+*.pot
+*.mo
+
+# Virtual Environment
+venv/
+env/
+env.bak/
+.venv/
+env.py
+
+# Django-related files
+db.sqlite3
+*.sqlite3
+media/
+staticfiles/
+static/
+node_modules/
+
+# Secrets and configuration files
+.env
+.env.*
+config/settings/local.py
+config/settings/secrets.py
+
+# Testing and coverage
+htmlcov/
+.coverage
+.coverage.
+# Byte-compiled files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.log
+*.pot
+*.mo
+
+# Virtual Environment
+venv/
+env/
+env.bak/
+.venv/
+env.py
+
+# Django-related files
+db.sqlite3
+*.sqlite3
+media/
+staticfiles/
+static/
+node_modules/
+
+# Secrets and configuration files
+.env
+.env.*
+config/settings/local.py
+config/settings/secrets.py
+
+# Testing and coverage
+htmlcov/
+.coverage
+.coverage.
+# Byte-compiled files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.log
+*.pot
+*.mo
+
+# Virtual Environment
+venv/
+../venv/*
+env/
+env.bak/
+.venv/
+env.py
+
+# Django-related files
+db.sqlite3
+*.sqlite3
+media/
+staticfiles/
+static/
+node_modules/
+
+# Secrets and configuration files
+.env
+.env.*
+config/settings/local.py
+config/settings/secrets.py
+
+# Testing and coverage
+htmlcov/
+.coverage
+.coverage.
+
+
+.vscode
