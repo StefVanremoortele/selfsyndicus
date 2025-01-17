@@ -17,7 +17,11 @@ class BaseUserManager(BUM):
         if not email:
             raise ValueError("Users must have an email address")
 
-        user = self.model(email=self.normalize_email(email.lower()), is_active=is_active, is_admin=is_admin)
+        user = self.model(
+            email=self.normalize_email(email.lower()),
+            is_active=is_active,
+            is_admin=is_admin,
+        )
 
         if password is not None:
             user.set_password(password)
@@ -69,6 +73,30 @@ class BaseUser(BaseModel, AbstractBaseUser, PermissionsMixin):
 
 # class Tenant(BaseModel, AbstractBaseUser, PermissionsMixin):
 #     pass
-	
+
 # class Supplier(BaseModel, AbstractBaseUser, PermissionsMixin):
 #     pass
+
+
+class Supplier(BaseUser):
+    company_name = models.CharField(max_length=255)
+    address = models.CharField(max_length=500, blank=True, null=True)
+    contact_number = models.CharField(max_length=15, blank=True, null=True)
+    website = models.URLField(blank=True, null=True)
+    tax_number = models.CharField(max_length=20, blank=True, null=True)
+
+    def __str__(self):
+        return f"Supplier: {self.company_name} ({self.email})"
+
+
+# class Customer(BaseUser):
+#     full_name = models.CharField(max_length=255)
+#     address = models.CharField(max_length=500)
+#     phone_number = models.CharField(max_length=15)
+#     date_of_birth = models.DateField()
+#     preferred_contact_method = models.CharField(
+#         choices=[("email", "Email"), ("phone", "Phone")], max_length=5
+#     )
+
+#     def __str__(self):
+#         return f"Customer: {self.full_name} ({self.email})"

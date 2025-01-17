@@ -11,22 +11,31 @@
 
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .apis import BuildingAPIView, PrivativeAPIView
+from .apis import (
+    BuildingListAPIView,
+    BuildingDetailAPIView,
+    # PrivativeDetailAPIView,
+    # PrivativeDetailByBuildingAPIView,
+    # PrivativeListAPIView,
+    # PrivativeListByBuildingAPIView,
+)
 
 
 urlpatterns = [
-    path("api/buildings/", BuildingAPIView.as_view(), name="building-list-create"),
-    path("api/buildings/<int:pk>/", BuildingAPIView.as_view(), name="building-detail"),
+    path("", BuildingListAPIView.as_view(), name="building-list"),
+    path("<int:pk>/", BuildingDetailAPIView.as_view(), name="building-detail"),
+    # path("privatives/", PrivativeListAPIView.as_view(), name="privative-list"),
     # path(
-    #     "api/buildings/<int:pk>/privatives",
-    #     PrivativeAPIView.as_view(),
-    #     name="privative-list",
+    #     "privatives/<int:pk>", PrivativeDetailAPIView.as_view(), name="privative-detail"
     # ),
-        path('api/privatives/', PrivativeAPIView.as_view(), name='privative-list-create'),
-        path('api/buildings/<int:building_id>/privatives/', PrivativeAPIView.as_view(), name='privative-list-by-building'),
     # path(
-    #     "api/buildings/<int:pk>/privatives/<int:pk>",
-    #     PrivativeAPIView.as_view(),
-    #     name="privative-detail",
+    #     "<int:building_id>/privatives/",
+    #     PrivativeListByBuildingAPIView.as_view(),
+    #     name="privative-list-by-building",
     # ),
+    # path(
+    #     "<int:building_id>/privatives/<int:privative_id>/",
+    #     PrivativeDetailByBuildingAPIView.as_view(),
+    #     name="privative-detail-by-building",
+    # )
 ]
